@@ -1,0 +1,6 @@
+/venv
+.env
+__pycache__/
+*.pyc
+grafo_result.txt
+*.csv
