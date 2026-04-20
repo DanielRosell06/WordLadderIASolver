@@ -10,14 +10,27 @@ int main() {
     // Initializing Variables
     printf("Iniciando variáveis!\n");
 
-    int targetIndex;
-    int initialIndex;
+    char initialWord[6];
+    char targetWord[6];
+    
+    printf("Digite a palavra inicial: ");
+    scanf("%5s", initialWord);
 
-    printf("Digite o targetIndex: ");
-    scanf("%d", &targetIndex);
+    printf("Digite a palavra final: ");
+    scanf("%5s", targetWord);
 
-    printf("Digite o initialIndex: ");
-    scanf("%d", &initialIndex);
+    int targetIndex = searchForWord(targetWord);
+    if (targetIndex == -1) {
+        printf("ERRO: A palavra digitada não existe no banco de dados");
+        return 1;
+    }
+
+    int initialIndex = searchForWord(initialWord);
+    if (initialIndex == -1) {
+        printf("ERRO: A palavra digitada não existe no banco de dados");
+        return 1;
+    }
+
 
     ListNode* openList = NULL;
     ListNode* closedList = NULL;
@@ -27,9 +40,6 @@ int main() {
 
     openList = add_to_list(openList, currentNode);
     closedList = add_to_list(closedList, currentNode);
-
-    const char* targetWord = VALID_GUESSES[targetIndex];
-    const char* initialWord = VALID_GUESSES[initialIndex];
 
     // While the indexes arent equal it searchs
     printf("Iniciando comparacoes\n");
@@ -57,8 +67,10 @@ int main() {
 
     // Mostrando o caminho
     while(currentNode != NULL) {
-        printf("<-");
         printf("%s", VALID_GUESSES[currentNode->index]);
+        if(currentNode->parent != NULL) {
+            printf(" <- ");
+        }
         Node* staticCurrentNode = currentNode;
         currentNode = currentNode->parent;
         free(staticCurrentNode);

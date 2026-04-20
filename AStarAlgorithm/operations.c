@@ -1,3 +1,4 @@
+#include <string.h>
 #include "operations.h"
 #include "database.h"
 
@@ -11,4 +12,13 @@ int heuristicFun(const char word1[], const char word2[]) {
     }
 
     return result;
+}
+
+int searchForWord(const char word[]) {
+    for(int i = 0; i < NUM_GUESSES; i++){
+        if(strcmp(word, VALID_GUESSES[i]) == 0){
+            return i;
+        }
+    }
+    return -1;
 }
