@@ -42,7 +42,7 @@ int main() {
     closedList = add_to_list(closedList, currentNode);
 
     // While the indexes arent equal it searchs
-    printf("Iniciando comparacoes\n");
+    printf("Iniciando comparacoes...\n");
     while(openList != NULL && currentNode->index != targetIndex){
         // Comparing with neighbor nodes
         for (int i = 0; i < GRAFO_ROWS; i++) {
@@ -53,7 +53,6 @@ int main() {
                 int hValue = heuristicFun(VALID_GUESSES[targetIndex], VALID_GUESSES[i]);
                 Node* newNode = create_node(i, currentNode->cost + 1, hValue, currentNode);
                 openList = add_to_list(openList, newNode);
-                printf("Adicionando o no %d a lista\n", newNode->index);
             }
         }
         
@@ -62,7 +61,6 @@ int main() {
         openList = remove_from_list(openList);
         currentNode = create_node(nodeData->index, nodeData->cost, nodeData->heuristic, nodeData->parent);
         closedList = add_to_list(closedList, currentNode);
-        printf("FINALIZACAO DO PRIMEIRO NO: %d adicionado a lista fechada\n", currentNode->index);
     }
 
     // Mostrando o caminho
@@ -76,5 +74,6 @@ int main() {
         free(staticCurrentNode);
     }
 
+    printf("\n");
     return 0;
 }

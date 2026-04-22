@@ -9788,7 +9788,7 @@ const char* VALID_GUESSES[] = {
     "robôs",
     "lados",
     "areia",
-    "impor",
+    " ",
     "vigor",
     "médio",
     "matiz",
