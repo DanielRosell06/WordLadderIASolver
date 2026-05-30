@@ -63,3 +63,40 @@ bool is_in_list(ListNode* list, int index) {
 
     return false;
 }
+
+Node* get_node_from_list(ListNode* list, int index) {
+    while(list != NULL) {
+        if (list->node->index == index) {
+            return list->node;
+        }
+        list = list->next;
+    }
+
+    return NULL;
+}
+
+ListNode* remove_node_by_index(ListNode* list, int index) {
+    if (list == NULL) {
+        return NULL;
+    }
+
+    if (list->node->index == index) {
+        ListNode* nextNode = list->next;
+        free(list);
+        return nextNode;
+    }
+
+    ListNode* current = list;
+
+    while (current->next != NULL && current->next->node->index != index) {
+        current = current->next;
+    }
+
+    if (current->next != NULL) {
+        ListNode* temp = current->next;
+        current->next = temp->next;
+        free(temp);
+    }
+
+    return list;
+}

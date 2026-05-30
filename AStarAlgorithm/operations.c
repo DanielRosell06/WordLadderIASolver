@@ -15,10 +15,23 @@ int heuristicFun(const char word1[], const char word2[]) {
 }
 
 int searchForWord(const char word[]) {
-    for(int i = 0; i < NUM_GUESSES; i++){
-        if(strcmp(word, VALID_GUESSES[i]) == 0){
-            return i;
+    int left = 0;
+    int right = NUM_GUESSES - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        int cmp = strcmp(word, VALID_GUESSES[mid]);
+
+        if (cmp == 0) {
+            return mid;
+        }
+
+        if (cmp > 0) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
         }
     }
+
     return -1;
 }

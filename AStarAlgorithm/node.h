@@ -17,5 +17,7 @@ Node* create_node(int index, float cost, float heuristic, Node *parent);
 ListNode* add_to_list(ListNode* listNode, Node* node);
 ListNode* remove_from_list(ListNode* list);
 bool is_in_list(ListNode* list, int index);
+Node* get_node_from_list(ListNode* list, int index);
+ListNode* remove_node_by_index(ListNode* list, int index);
 
 #endif

@@ -31,6 +31,7 @@ int main() {
         return 1;
     }
 
+    int nIteracao = 0;
 
     ListNode* openList = NULL;
     ListNode* closedList = NULL;
@@ -49,10 +50,22 @@ int main() {
 
             int value = GRAFO[currentNode->index][i];
             // Adding to open list
-            if(value == 1 && !is_in_list(closedList, i) && !is_in_list(openList, i)) {
-                int hValue = heuristicFun(VALID_GUESSES[targetIndex], VALID_GUESSES[i]);
-                Node* newNode = create_node(i, currentNode->cost + 1, hValue, currentNode);
-                openList = add_to_list(openList, newNode);
+            if(value == 1 &&  !is_in_list(closedList, i)) {
+                float newCost = currentNode->cost + 1;
+                if (!is_in_list(openList, i)){
+                    int hValue = heuristicFun(VALID_GUESSES[targetIndex], VALID_GUESSES[i]);
+                    Node* newNode = create_node(i, newCost, hValue, currentNode);
+                    openList = add_to_list(openList, newNode);
+                } else {
+                    Node* existingNode = get_node_from_list(openList, i);
+                    if (newCost < existingNode->cost) {
+                        openList = remove_node_by_index(openList, i);
+                        existingNode->cost = newCost;
+                        existingNode->final = newCost + existingNode->heuristic;
+                        existingNode->parent = currentNode;
+                        openList = add_to_list(openList, existingNode);
+                    }
+                }
             }
         }
         
@@ -61,6 +74,23 @@ int main() {
         openList = remove_from_list(openList);
         currentNode = create_node(nodeData->index, nodeData->cost, nodeData->heuristic, nodeData->parent);
         closedList = add_to_list(closedList, currentNode);
+
+        printf("Iteração: %d\n", nIteracao);
+        printf("Lista Aberta: ");
+        ListNode* tempOpen = openList;
+        while(tempOpen != NULL) {
+            printf("%s, ", VALID_GUESSES[tempOpen->node->index]);
+            tempOpen = tempOpen->next;
+        }
+        printf("\n");
+
+        printf("Lista Fechada: ");
+        ListNode* tempClosed = closedList;
+        while(tempClosed != NULL) {
+            printf("%s, ", VALID_GUESSES[tempClosed->node->index]);
+            tempClosed = tempClosed->next;
+        }
+        printf("\n\n");
     }
 
     // Mostrando o caminho

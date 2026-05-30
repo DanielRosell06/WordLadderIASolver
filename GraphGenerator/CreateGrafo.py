@@ -1,5 +1,5 @@
 import csv
-from database import UNACCENTED_VALID_GUESSES
+from database import ACCENTED_VALID_GUESSES
 
 def compare(word1, word2):
     value = 0;
@@ -14,7 +14,7 @@ def compare(word1, word2):
 
 
 def createArray():
-    meu_array = UNACCENTED_VALID_GUESSES
+    meu_array = ACCENTED_VALID_GUESSES
 
     
     n = len(meu_array)
