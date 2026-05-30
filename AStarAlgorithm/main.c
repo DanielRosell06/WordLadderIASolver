@@ -31,8 +31,6 @@ int main() {
         return 1;
     }
 
-    int nIteracao = 0;
-
     ListNode* openList = NULL;
     ListNode* closedList = NULL;
     
@@ -74,23 +72,6 @@ int main() {
         openList = remove_from_list(openList);
         currentNode = create_node(nodeData->index, nodeData->cost, nodeData->heuristic, nodeData->parent);
         closedList = add_to_list(closedList, currentNode);
-
-        printf("Iteração: %d\n", nIteracao);
-        printf("Lista Aberta: ");
-        ListNode* tempOpen = openList;
-        while(tempOpen != NULL) {
-            printf("%s, ", VALID_GUESSES[tempOpen->node->index]);
-            tempOpen = tempOpen->next;
-        }
-        printf("\n");
-
-        printf("Lista Fechada: ");
-        ListNode* tempClosed = closedList;
-        while(tempClosed != NULL) {
-            printf("%s, ", VALID_GUESSES[tempClosed->node->index]);
-            tempClosed = tempClosed->next;
-        }
-        printf("\n\n");
     }
 
     // Mostrando o caminho
