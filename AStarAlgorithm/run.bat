@@ -1,11 +1,11 @@
 @echo off
 chcp 65001 > nul
 
-if not exist main_log.exe (
-    echo main_log.exe nao encontrado.
+if not exist main_inadimissivel_log_test_01.exe (
+    echo main_inadimissivel_log_test_01.exe nao encontrado.
     echo Compilando...
 
-    gcc main.c node.c operations.c database.c -o main_log
+    gcc main.c node.c operations.c database.c -o main_log_XXX
 
     if errorlevel 1 (
         echo Erro na compilacao.
@@ -14,6 +14,6 @@ if not exist main_log.exe (
     )
 )
 
-main_log.exe
+main_inadimissivel_log_test_01.exe
 
 pause

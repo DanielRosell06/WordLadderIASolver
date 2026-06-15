@@ -2,6 +2,7 @@
 #define OPERATIONS_H
 
 int heuristicFun(const char word1[], const char word2[]);
+int heuristicFunInadmissivel(const char word1[], const char word2[]);
 int searchForWord(const char word[]);
 
 #endif

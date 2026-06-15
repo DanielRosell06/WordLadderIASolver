@@ -6,9 +6,25 @@ int heuristicFun(const char word1[], const char word2[]) {
     int result = 0;
 
     for(int i = 0; i < WORD_LENGTH; i++) {
-        if(word1[i] == word2[i]) {
+        if(word1[i] != word2[i]) {
             result++;
         }
+    }
+
+    return result;
+}
+
+int heuristicFunInadmissivel(const char word1[], const char word2[]) {
+    int result = 0;
+
+    for(int i = 0; i < WORD_LENGTH; i++) {
+        int diff = word1[i] - word2[i];
+        
+        if(diff < 0) {
+            diff = -diff;
+        }
+        
+        result += diff;
     }
 
     return result;

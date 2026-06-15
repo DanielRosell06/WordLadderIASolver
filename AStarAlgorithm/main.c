@@ -21,13 +21,13 @@ int main() {
 
     int targetIndex = searchForWord(targetWord);
     if (targetIndex == -1) {
-        printf("ERRO: A palavra digitada não existe no banco de dados");
+        printf("ERRO: A palavra objetivo não existe no banco de dados");
         return 1;
     }
 
     int initialIndex = searchForWord(initialWord);
     if (initialIndex == -1) {
-        printf("ERRO: A palavra digitada não existe no banco de dados");
+        printf("ERRO: A palavra inicial não existe no banco de dados");
         return 1;
     }
 
@@ -66,6 +66,30 @@ int main() {
                 }
             }
         }
+
+        printf("Nó expandido: %s (g:%.0f, h:%.0f, f:%.0f)\n", VALID_GUESSES[currentNode->index], currentNode->cost, currentNode->heuristic, currentNode->final);
+
+        ListNode* printNode = openList;
+        printf("Lista aberta: [");
+        while(printNode != NULL) {
+            printf("%s(f:%.0f)", VALID_GUESSES[printNode->node->index], printNode->node->final);
+            if(printNode->next != NULL) {
+                printf(", ");
+            }
+            printNode = printNode->next;
+        }
+        printf("]\n");
+
+        printNode = closedList;
+        printf("Lista fechada: [");
+        while(printNode != NULL) {
+            printf("%s(f:%.0f)", VALID_GUESSES[printNode->node->index], printNode->node->final);
+            if(printNode->next != NULL) {
+                printf(", ");
+            }
+            printNode = printNode->next;
+        }
+        printf("]\n\n\n\n");
         
         // Adding best node to closed list
         Node* nodeData = openList->node;
