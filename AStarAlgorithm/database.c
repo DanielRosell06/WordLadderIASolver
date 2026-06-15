@@ -1,6 +1,6 @@
 #include "database.h"
 
-const char* VALID_GUESSES[] = {
+const char* Words[] = {
     "ababa",
     "abacá",
     "abada",
